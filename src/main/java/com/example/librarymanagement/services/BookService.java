@@ -5,10 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.librarymanagement.model.Book;
 import com.example.librarymanagement.repository.BookRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class BookService {
-  @Autowired
-  BookRepository bookRepository;
+  private final BookRepository bookRepository;
 
   public Book create(Book book) {
     return this.bookRepository.save(book);

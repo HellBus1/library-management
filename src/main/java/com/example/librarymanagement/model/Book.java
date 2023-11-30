@@ -14,6 +14,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
+import com.example.librarymanagement.dto.BookResponseDTO;
 
 @Getter
 @Setter
@@ -41,4 +43,9 @@ public class Book {
   @UpdateTimestamp
   @EqualsAndHashCode.Exclude
   private Timestamp updatedAt;
+
+  public BookResponseDTO convertToDTO() {
+    ModelMapper modelMapper = new ModelMapper();
+    return modelMapper.map(this, BookResponseDTO.class);
+  }
 }
