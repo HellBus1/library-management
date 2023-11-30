@@ -7,5 +7,5 @@
 
 ## How to run test
 ```
-./mvnw test
+./mvnw clean test
 ```

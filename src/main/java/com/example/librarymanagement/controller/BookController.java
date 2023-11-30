@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookController {
   private final BookService bookService;
 
-  @PostMapping(value = "/books")
+  @PostMapping(value = "/books", consumes = { "application/json;charset=utf-8" }, produces = { "application/json;charset=utf-8" })
   public ResponseEntity<BookResponseDTO> add(@Valid @RequestBody BookRequestDTO bookRequestDTO) {
     Book newBook = bookRequestDTO.convertToEntity();
 
