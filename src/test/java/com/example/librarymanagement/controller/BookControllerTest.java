@@ -16,20 +16,19 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.http.MediaType;
 import com.example.librarymanagement.dto.BookResponseDTO;
-import com.example.librarymanagement.dto.BookRequestDTO;
 import com.example.librarymanagement.services.BookService;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-@SpringBootTest(classes = BookController.class)
+@SpringBootTest(classes = { BookController.class, BookService.class, ObjectMapper.class })
 @AutoConfigureMockMvc
-public class BookControllerTest {
+class BookControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
   @Autowired
   private ObjectMapper objectMapper;
 
-  @Autowired
+  @MockBean
   private BookRepository bookRepository;
 
   @Autowired
@@ -39,18 +38,18 @@ public class BookControllerTest {
   void add_shouldAddBookTitledNarutoAndQuantityThirty() {
     try {
       BookRequestDTO bookRequest = BookRequestDTO.builder().title("Naruto").quantity(30).build();
-      BookRequestDTO bookRequest2 = BookRequestDTO.builder().title("Narutos").quantity(100).build();
       String newBookRequest = this.objectMapper.writeValueAsString(bookRequest);
       RequestBuilder builder = MockMvcRequestBuilders.post("/books")
-                      .contentType(MediaType.APPLICATION_JSON).content(newBookRequest)
-                      .accept(MediaType.APPLICATION_JSON);
+                      .contentType(MediaType.APPLICATION_JSON).content(newBookRequest);
 
       MvcResult result = this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isCreated())
                       .andReturn();
       String responseString = result.getResponse().getContentAsString();
       BookResponseDTO actualResult = this.objectMapper.readValue(responseString, BookResponseDTO.class);
 
-      Assertions.assertEquals(actualResult, bookRequest2);
-    } catch (Exception e) {}
+      Assertions.assertEquals(actualResult, bookRequest);
+    } catch (Exception e) {
+      System.out.println(e);
+    }
   }
 }
