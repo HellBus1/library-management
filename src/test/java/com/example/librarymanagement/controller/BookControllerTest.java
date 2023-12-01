@@ -27,16 +27,16 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 class BookControllerTest {
   @Autowired
-  private MockMvc mockMvc;
+  MockMvc mockMvc;
 
   @Autowired
-  private ObjectMapper objectMapper;
+  ObjectMapper objectMapper;
 
   @MockBean
-  private BookRepository bookRepository;
+  BookRepository bookRepository;
 
   @Autowired
-  private BookService bookService;
+  BookService bookService;
 
   @Test
   void add_shouldAddBookTitledNarutoAndQuantityThirty() throws Exception {
