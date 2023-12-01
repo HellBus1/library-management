@@ -1,15 +1,17 @@
 package com.example.librarymanagement.dto;
 
+import com.example.librarymanagement.model.Book;
+
+import org.modelmapper.ModelMapper;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import org.modelmapper.ModelMapper;
-import com.example.librarymanagement.model.Book;
 
 @Getter
 @Setter
