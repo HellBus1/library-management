@@ -1,10 +1,11 @@
 package com.example.librarymanagement.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.example.librarymanagement.model.Book;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import com.example.librarymanagement.model.Book;
-import com.example.librarymanagement.dto.BookRequestDTO;
 
 @SpringBootTest(classes = BookRequestDTO.class)
 class BookRequestDTOTest {
